@@ -7,7 +7,7 @@ export default function VoiceTraining() {
         <AnimatedSection>
           <h2 className="text-3xl sm:text-5xl font-bold mb-6">
             It writes like{" "}
-            <span className="bg-gradient-to-r from-accent to-accent-violet bg-clip-text text-transparent">
+            <span className="text-accent">
               you.
             </span>
           </h2>

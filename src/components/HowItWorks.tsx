@@ -32,13 +32,15 @@ export default function HowItWorks() {
         </AnimatedSection>
 
         <div className="grid md:grid-cols-3 gap-8 md:gap-4 relative">
-          {/* Connector line (desktop only) */}
-          <div className="hidden md:block absolute top-16 left-[20%] right-[20%] h-px bg-gradient-to-r from-accent to-accent-violet" />
+          {/* Connector line (desktop only) — sits between icon and step label */}
+          <div className="hidden md:block absolute top-5 left-[20%] right-[20%] h-px bg-accent/30" />
 
           {steps.map((step, i) => (
             <AnimatedSection key={step.number} delay={i * 0.15}>
               <div className="relative text-center px-4">
-                <div className="text-4xl mb-4">{step.icon}</div>
+                <div className="relative z-10 inline-flex items-center justify-center w-12 h-12 rounded-full bg-surface text-3xl mb-4">
+                  {step.icon}
+                </div>
                 <span className="inline-block text-xs font-bold text-accent tracking-widest uppercase mb-2">
                   Step {step.number}
                 </span>

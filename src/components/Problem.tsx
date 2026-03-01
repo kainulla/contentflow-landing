@@ -32,7 +32,7 @@ export default function Problem() {
 
         <AnimatedSection delay={0.3}>
           <p className="mt-10 text-xl sm:text-2xl font-semibold">
-            <span className="bg-gradient-to-r from-accent to-accent-violet bg-clip-text text-transparent">
+            <span className="text-accent">
               ContentFlow
             </span>
             : one tool, one price.

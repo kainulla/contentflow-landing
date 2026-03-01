@@ -18,7 +18,7 @@ export default function Platforms() {
           <h2 className="text-3xl sm:text-5xl font-bold mb-4">
             One piece of content.
             <br />
-            <span className="bg-gradient-to-r from-accent to-accent-violet bg-clip-text text-transparent">
+            <span className="text-accent">
               Six platforms.
             </span>
           </h2>

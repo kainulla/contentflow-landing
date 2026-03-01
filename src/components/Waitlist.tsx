@@ -2,14 +2,33 @@ import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
 import AnimatedSection from "./AnimatedSection";
 
+const GOOGLE_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbx_nmIyDUhM2ZxmCAa8Q7ejZ4WsWYzUnRsaisftsc1oUpGAmpsZ0ApWwXpJqddOVOcw/exec";
+
 export default function Waitlist() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    // TODO: Replace with actual API endpoint (e.g., /api/waitlist)
-    setSubmitted(true);
+    setLoading(true);
+    setError("");
+
+    try {
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, timestamp: new Date().toISOString() }),
+      });
+      setSubmitted(true);
+    } catch {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -32,7 +51,7 @@ export default function Waitlist() {
               className="py-8 px-6 rounded-2xl border border-accent/30 bg-accent/5"
             >
               <p className="text-xl font-semibold text-white">
-                You're on the list! 🎉
+                You're on the list!
               </p>
               <p className="text-muted mt-2">
                 We'll reach out when it's your turn.
@@ -53,14 +72,16 @@ export default function Waitlist() {
               />
               <motion.button
                 type="submit"
-                className="px-8 py-4 bg-accent hover:bg-accent/90 text-white font-semibold rounded-full transition-colors cursor-pointer whitespace-nowrap"
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
+                disabled={loading}
+                className="px-8 py-4 bg-accent hover:bg-accent/90 disabled:opacity-60 text-white font-semibold rounded-full transition-colors cursor-pointer whitespace-nowrap"
+                whileHover={loading ? {} : { scale: 1.03 }}
+                whileTap={loading ? {} : { scale: 0.97 }}
               >
-                Get Early Access
+                {loading ? "Sending..." : "Get Early Access"}
               </motion.button>
             </form>
           )}
+          {error && <p className="text-red-400 text-sm mt-3">{error}</p>}
         </AnimatedSection>
       </div>
     </section>

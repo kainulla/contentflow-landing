@@ -26,7 +26,7 @@ export default function Hero() {
         transition={{ duration: 0.6, delay: 0.1 }}
       >
         One Input →{" "}
-        <span className="bg-gradient-to-r from-accent to-accent-violet bg-clip-text text-transparent">
+        <span className="text-accent">
           Every Platform.
         </span>
       </motion.h1>
