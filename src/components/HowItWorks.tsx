@@ -2,19 +2,16 @@ import AnimatedSection from "./AnimatedSection";
 
 const steps = [
   {
-    number: "01",
     title: "Drop anything",
     description: "Blog URL, video, podcast, text, PDF — any content you already have.",
     icon: "📥",
   },
   {
-    number: "02",
     title: "AI multiplies it",
     description: "Extracts themes, generates platform-optimized posts in your voice.",
     icon: "⚡",
   },
   {
-    number: "03",
     title: "Edit & publish",
     description: "Review, tweak, and schedule everything in one place.",
     icon: "🚀",
@@ -36,14 +33,11 @@ export default function HowItWorks() {
           <div className="hidden md:block absolute top-5 left-[20%] right-[20%] h-px bg-accent/30" />
 
           {steps.map((step, i) => (
-            <AnimatedSection key={step.number} delay={i * 0.15}>
+            <AnimatedSection key={step.title} delay={i * 0.15}>
               <div className="relative text-center px-4">
                 <div className="relative z-10 inline-flex items-center justify-center w-12 h-12 rounded-full bg-surface text-3xl mb-4">
                   {step.icon}
                 </div>
-                <span className="inline-block text-xs font-bold text-accent tracking-widest uppercase mb-2">
-                  Step {step.number}
-                </span>
                 <h3 className="text-xl font-bold mb-2">{step.title}</h3>
                 <p className="text-muted">{step.description}</p>
               </div>
